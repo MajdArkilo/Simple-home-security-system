@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
+#include <wiringPi.h>
+
+int main()
+{
+    wiringPiSetup () ;
+    
+    pinMode (1, OUTPUT) ;
+    pinMode (2, OUTPUT) ;
+    pinMode (3, INPUT) ;
+    pullUpDnControl(3, PUD_UP) ;
+    int x;
+    
+    alarmTriggered()
+    {
+        double seconds; /* using this variable to update time */
+        double secondsafter10;
+        seconds = (double) time(NULL); /* getting the current timing */
+        secondsafter10 = seconds + 10;
+        x = digitalRead(3); /* saving the current button status */
+        while((seconds <= secondsafter10) && (x == 1))
+        {
+           x = digitalRead(3); /* checking the button status */
+           seconds = (double) time(NULL);
+           if(fmod(seconds,2) == 0)
+           {
+              printf("every 2 seconds\n"); 
+                digitalWrite (1, HIGH) ;
+                digitalWrite (2, HIGH) ;
+           }
+           else
+           {
+                digitalWrite (1, LOW) ;
+                digitalWrite (2, LOW) ; 
+           }
+        }
+        digitalWrite (1, LOW) ; /* turn LED are off */
+        digitalWrite (2, LOW) ; /* turn LED are off */
+    }
+
+    return 0;
+    
+}
