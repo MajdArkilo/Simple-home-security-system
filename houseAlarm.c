@@ -33,13 +33,26 @@ void alarmOff(void)
 void alarmArming(void)
 {
     int i;
+    int buttonValue;
+    double seconds; /* using this variable to update time */
+    double secondsafter10;
+    seconds = (double) time(NULL); /* getting the current timing */
+    secondsafter10 = seconds + 10;
+    buttonValue = digitalRead(3); /* saving the current button status */
     digitalWrite (2, LOW) ;
     digitalWrite (4, LOW) ;
-    
-    for(i = 0; i < 6; i++)
+    while((seconds <= secondsafter10) && buttonValue)
     {
-        digitalWrite (1, HIGH) ; delay (1000) ;
-        digitalWrite (1, LOW) ; delay (1000) ;
+           buttonValue = digitalRead(3); /* checking the button status */
+           seconds = (double) time(NULL);
+           if(fmod(seconds,2) == 0)
+           {
+                digitalWrite (1, HIGH);
+           }
+           else
+           {
+                digitalWrite (1, LOW) ;
+           } 
     }
     digitalWrite (1, LOW) ;
     digitalWrite (2, HIGH) ;
@@ -114,7 +127,7 @@ void alarmTriggerd(void)
 void alarmSounding(void)
 {
     /* IFFT event should be TRIGGERED*/
-    ifttt("http://red.eecs.yorku.ca:8080/trigger/event/with/key/Ja3far", "alarm", "is", "sounding");
+   /* ifttt("http://red.eecs.yorku.ca:8080/trigger/event/with/key/Ja3far", "alarm", "is", "sounding"); */
     ifttt("https://maker.ifttt.com/trigger/AlarmTriggerd3/with/key/uQayuY3amwBonQr7RGtpk", "Alarm", "is", "souding");
     int buttonValue;
     double seconds;
