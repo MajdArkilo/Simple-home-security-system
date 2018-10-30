@@ -115,7 +115,7 @@ void alarmSounding(void)
 {
     /* IFFT event should be TRIGGERED*/
     ifttt("http://red.eecs.yorku.ca:8080/trigger/event/with/key/Ja3far", "alarm", "is", "sounding");
-    ifttt("https://maker.ifttt.com/trigger/alarmSounding/with/key/c_-Tg5rhDJudbntQgD6KDA", "Alarm", "is", "souding");
+    ifttt("https://maker.ifttt.com/trigger/AlarmTriggerd3/with/key/uQayuY3amwBonQr7RGtpk", "Alarm", "is", "souding");
     int buttonValue;
     double seconds;
     buttonValue = digitalRead(3);
