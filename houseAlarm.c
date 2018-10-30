@@ -9,6 +9,7 @@ for(int i; ;)*/
 
 int status;
 extern int ifttt(char* , char* , char* , char* );
+status = 1;
 
 
 void alarmOff(void)
@@ -179,7 +180,7 @@ int main()
     pinMode (3, INPUT) ;
     pullUpDnControl(3, PUD_UP) ;
     pinMode (4, OUTPUT) ;
-    alarmOff();
+    handlingfunction();
     
 
     return 0;
