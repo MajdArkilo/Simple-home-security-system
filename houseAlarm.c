@@ -8,12 +8,6 @@
 for(int i; ;)*/
 
 int status;
-void alarmOff();
-void alarmArming();
-void alarmArmed();
-void alarmTriggerd();
-void alarmSounding();
-void handlingfunction();
 extern int ifttt(char* , char* , char* , char* );
 
 
