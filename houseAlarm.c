@@ -32,7 +32,6 @@ void alarmOff(void)
             digitalWrite (2, LOW) ;
             digitalWrite (4, LOW) ;
             }
-        handlingfunction();
 /*    wiringPiISR(3, INT_EDGE_FALLING, &alarmArming);
 */    }
 
@@ -50,7 +49,6 @@ void alarmArming(void)
     digitalWrite (1, LOW) ;
     digitalWrite (2, HIGH) ;
     status = 3;
-    handlingfunction();
 }
 
 void alarmArmed(void)
@@ -78,7 +76,6 @@ void alarmArmed(void)
         digitalWrite (2, HIGH) ;
         digitalWrite (4, LOW) ;  
     }
-    handlingfunction();
 }
 
 void alarmTriggerd(void)
@@ -115,7 +112,6 @@ void alarmTriggerd(void)
         {
             status = 5;
         }
-        handlingfunction();
    } 
 
 
@@ -147,11 +143,7 @@ void alarmSounding(void)
         }
         
     }
-    if(buttonValue == 0)
-    {
         status = 1;
-    }
-    handlingfunction();
 /*    wiringPiISR(3, INT_EDGE_FALLING, &alarmOff);
 */    
 }
@@ -160,30 +152,27 @@ void alarmSounding(void)
 void handlingfunction(void)
 {
     while(1)
-    if(status == 1)
     {
-        alarmOff();
-        break;
-    }
-    else if(status == 2)
-    {
-        alarmArming();
-        break;
-    }
-    else if(status == 3)
-    {
-        alarmArmed();
-        break;
-    }
-    else if(status == 4)
-    {
-        alarmTriggerd();
-        break;
-    }
-    else
-    {
-        alarmSounding();
-        break;
+        if(status == 1)
+        {
+            alarmOff();
+        }
+        else if(status == 2)
+        {
+            alarmArming();
+        }
+        else if(status == 3)
+        {
+            alarmArmed();
+        }
+        else if(status == 4)
+        {
+            alarmTriggerd();
+        }
+        else
+        {
+            alarmSounding();
+        }
     }
     
 }
