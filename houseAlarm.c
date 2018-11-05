@@ -32,18 +32,19 @@ void alarmOff(void)
 
 void alarmArming(void)
 {
+    /*
     int i;
     int buttonValue;
-    double seconds; /* using this variable to update time */
+    double seconds; 
     double secondsafter10;
-    seconds = (double) time(NULL); /* getting the current timing */
+    seconds = (double) time(NULL); 
     secondsafter10 = seconds + 10;
-    buttonValue = digitalRead(3); /* saving the current button status */
+    buttonValue = digitalRead(3); 
     digitalWrite (2, LOW) ;
     digitalWrite (4, LOW) ;
     while((seconds <= secondsafter10) && buttonValue)
     {
-           buttonValue = digitalRead(3); /* checking the button status */
+           buttonValue = digitalRead(3); 
            seconds = (double) time(NULL);
            if(fmod(seconds,2) == 0)
            {
@@ -53,6 +54,19 @@ void alarmArming(void)
            {
                 digitalWrite (1, LOW) ;
            } 
+    }
+    digitalWrite (1, LOW) ;
+    digitalWrite (2, HIGH) ;
+    status = 3;
+    */
+    int i;
+    digitalWrite (2, LOW) ;
+    digitalWrite (4, LOW) ;
+    
+    for(i = 0; i < 6; i++)
+    {
+        digitalWrite (1, HIGH) ; delay (1000) ;
+        digitalWrite (1, LOW) ; delay (1000) ;
     }
     digitalWrite (1, LOW) ;
     digitalWrite (2, HIGH) ;
